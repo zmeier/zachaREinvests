@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "zachareinvests",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Website for zachaREinvests.com",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Zac Meier <zcmeier@gmail.com>",
   "dependencies": {
     "gatsby": "^2.2.3",
     "gatsby-image": "^2.0.34",
@@ -11,7 +11,6 @@
     "gatsby-plugin-manifest": "^2.0.24",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.10",
-    "gatsby-plugin-s3": "^0.2.5",
     "gatsby-plugin-sharp": "^2.0.30",
     "gatsby-source-filesystem": "^2.0.27",
     "gatsby-transformer-sharp": "^2.1.17",
@@ -24,7 +23,7 @@
     "prettier": "^1.16.4"
   },
   "keywords": [
-    "gatsby"
+    "zachareinvests"
   ],
   "license": "MIT",
   "scripts": {
@@ -33,14 +32,13 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "deploy": "gatsby-plugin-s3 deploy --yes && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths \"/*\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/zmeier/zachaREinvests"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/zmeier/zachaREinvests/issues"
   }
 }
