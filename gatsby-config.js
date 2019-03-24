@@ -1,11 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `zachaREinvests.com`,
+    title: `zachaREI`,
     description: `Looking to buy land all across the United States.`,
     author: `@zmeier`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
