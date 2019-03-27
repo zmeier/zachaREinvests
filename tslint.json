@@ -3,12 +3,14 @@
   "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
+    "semicolon": [true, "always"],
     "interface-name": false,
     "member-access": [false],
     "ordered-imports": [true],
     "no-console": [false],
     "no-var-requires": true,
-    "quotemark": [true, "double", "jsx-double"]
+    "quotemark": [true, "double", "jsx-double"],
+    "object-literal-sort-keys": [false]
   },
   "rulesDirectory": []
 }

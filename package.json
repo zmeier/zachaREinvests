@@ -5,28 +5,32 @@
   "version": "0.1.0",
   "author": "Zac Meier <zcmeier@gmail.com>",
   "dependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/node": "^11.11.6",
-    "@types/react": "^16.8.8",
-    "@types/react-dom": "^16.8.3",
+    "bootstrap": "^4.3.1",
     "gatsby": "^2.2.9",
-    "gatsby-image": "^2.0.34",
     "gatsby-plugin-canonical-urls": "^2.0.12",
     "gatsby-plugin-manifest": "^2.0.24",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.10",
-    "gatsby-plugin-sharp": "^2.0.30",
+    "gatsby-plugin-sass": "^2.0.11",
+    "gatsby-plugin-sharp": "^2.0.31",
     "gatsby-plugin-typescript": "^2.0.11",
-    "gatsby-source-filesystem": "^2.0.27",
+    "gatsby-source-filesystem": "^2.0.28",
     "gatsby-transformer-sharp": "^2.1.17",
-    "prop-types": "^15.7.2",
+    "node-sass": "^4.11.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-helmet": "^5.2.0",
-    "typescript": "^3.3.4000"
+    "react-helmet": "^5.2.0"
   },
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "@types/node": "^11.11.6",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.3",
+    "@types/react-helmet": "^5.0.8",
+    "prettier": "^1.16.4",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.3.4000"
   },
   "keywords": [
     "zachareinvests"
@@ -38,7 +42,8 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
