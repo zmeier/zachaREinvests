@@ -6,13 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-typescript`,
-      options: {
-        isTSX: true,
-        allExtensions: true
-      }
-    },
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
