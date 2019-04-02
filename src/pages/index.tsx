@@ -1,41 +1,141 @@
-import { Link } from "gatsby";
+import "jquery";
+import "popper.js";
+
+import { graphql } from "gatsby";
+import Img, { FixedObject } from "gatsby-image";
 import React from "react";
 
+import { InterestForm } from "../components/interestForm";
 import { Layout } from "../components/layout";
 import { SEO } from "../components/seo";
-import forSale from "../images/for_sale.svg";
-import "../styles/index.scss";
 
-const IndexPage: React.SFC = () => {
+interface HowItWorksEdge {
+  node: {
+    rawMarkdownBody: string;
+    frontmatter: {
+      header: string;
+      link: string;
+      linkLabel: string;
+      icon: string;
+      iconAlt: string;
+    };
+  };
+}
+
+interface KeyWordsEdge {
+  node: {
+    keywords: string[];
+  };
+}
+
+interface IndexPageProps {
+  data: {
+    allDataJson: {
+      edges: KeyWordsEdge[];
+    };
+    about: {
+      excerpt: string;
+      frontmatter: {
+        title: string;
+      };
+    };
+    aboutPic: {
+      childImageSharp: {
+        fixed: FixedObject;
+      };
+    };
+    allMarkdownRemark: {
+      edges: HowItWorksEdge[];
+    };
+  };
+}
+
+const IndexPage: React.SFC<IndexPageProps> = props => {
+  let allKeyWords: string[] = [];
+  props.data.allDataJson.edges.map(edge => (allKeyWords = allKeyWords.concat(edge.node.keywords)));
   return (
     <Layout>
-      <SEO
-        title="Home"
-        keywords={[
-          `land`,
-          `invest`,
-          `investment`,
-          `realestate`,
-          `real`,
-          `estate`,
-          `zachary`,
-          `zachare`,
-          `zachareinvests`,
-          `house`,
-          `sell`,
-          `buy`,
-          `house`,
-        ]}
-      />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <img src={forSale} alt="for sale sign" />
-      </div>
-      <Link to="/page-2/">Go to page 2</Link>
+      <SEO title="Home" keywords={allKeyWords} />
+      <section id="index-primary-content" className="jumbotron-fluid pt-5">
+        <div className="container pt-5 p-3">
+          <div className="row justify-content-center align-items-center p-4">
+            <div className="col-lg-5 col-md-6 text-center text-light">
+              <h1>Hi people</h1>
+              <p>Welcome to your new Gatsby site.</p>
+              <p>Now go build something great.</p>
+            </div>
+            <div className="col-lg-5 col-md-6 text-center">
+              <InterestForm className="interest-form bg-white shadow-sm rounded p-4 m-auto" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="container p-3 anchor-points">
+          <h2 id="how-it-works">How it works</h2>
+          {props.data.allMarkdownRemark.edges.map((edge, index) => {
+            return (
+              <div key={index}>
+                <h5>{edge.node.frontmatter.header}</h5>
+                <div>{edge.node.rawMarkdownBody}</div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      <section>
+        <div className="container p-3">
+          <div className="row">
+            <div className="col-lg-2 col-md-3">
+              <Img className="self-portrait m-auto" fixed={props.data.aboutPic.childImageSharp.fixed} />
+            </div>
+            <div className="col-lg-10 col-md-9">
+              <h2 id="about-me-excerpt">{props.data.about.frontmatter.title}</h2>
+              <div dangerouslySetInnerHTML={{ __html: props.data.about.excerpt }} />
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };
+
+export const query = graphql`
+  query {
+    allDataJson(filter: { keywords: { ne: null}}) {
+      edges {
+        node {
+          keywords
+        }
+      }
+    },
+    about: markdownRemark(fileAbsolutePath: {regex: "/.*/about\\.md$/"}) {
+      excerpt
+      frontmatter {
+        title
+      }
+    },
+    aboutPic: file(relativePath: { eq: "self_portrait.png" }) {
+      childImageSharp {
+        fixed(width: 130) {
+          ...GatsbyImageSharpFixed_noBase64
+        }
+      }
+    }
+    allMarkdownRemark(filter: { fileAbsolutePath: {regex: "/.*/howitworks/.*\\.md$/"}}, sort: { order: ASC, fields: fileAbsolutePath }) {
+      edges {
+        node {
+          rawMarkdownBody
+          frontmatter {
+            header
+            link
+            linkLabel
+            iconAlt
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default IndexPage;
