@@ -1,6 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 $enable-gradients: true;
 
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import "~@material/react-top-app-bar/index.scss";
+@import "~@material/react-button/index.scss";
+@import "~@material/react-material-icon/index.scss";
 @import "~bootstrap/scss/bootstrap.scss";
 
 * {

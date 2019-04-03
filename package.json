@@ -5,6 +5,9 @@
   "version": "0.1.0",
   "author": "Zac Meier <zcmeier@gmail.com>",
   "dependencies": {
+    "@material/react-button": "^0.11.0",
+    "@material/react-material-icon": "~0.11.0",
+    "@material/react-top-app-bar": "~0.11.0",
     "bootstrap": "^4.3.1",
     "gatsby": "^2.3.4",
     "gatsby-background-image": "^0.2.8-alpha4",
@@ -27,7 +30,8 @@
     "popper.js": "^1.14.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.29",

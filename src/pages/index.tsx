@@ -1,13 +1,14 @@
 import "jquery";
 import "popper.js";
 
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Img, { FixedObject } from "gatsby-image";
-import React from "react";
+import React, { FormEvent } from "react";
 
 import { InterestForm } from "../components/interestForm";
 import { Layout } from "../components/layout";
 import { SEO } from "../components/seo";
+import { postContactUsForm } from "../api/contactUsApi";
 
 interface HowItWorksEdge {
   node: {
@@ -50,6 +51,12 @@ interface IndexPageProps {
   };
 }
 
+const handleFormSubmit = (formEvent: FormEvent<HTMLFormElement>) => {
+  formEvent.preventDefault();
+  const formData = new FormData(formEvent.currentTarget);
+  postContactUsForm(formData);
+};
+
 const IndexPage: React.SFC<IndexPageProps> = props => {
   let allKeyWords: string[] = [];
   props.data.allDataJson.edges.map(edge => (allKeyWords = allKeyWords.concat(edge.node.keywords)));
@@ -60,12 +67,11 @@ const IndexPage: React.SFC<IndexPageProps> = props => {
         <div className="container pt-5 p-3">
           <div className="row justify-content-center align-items-center p-4">
             <div className="col-lg-5 col-md-6 text-center text-light">
-              <h1>Hi people</h1>
-              <p>Welcome to your new Gatsby site.</p>
-              <p>Now go build something great.</p>
+              <h1>Sell your land quickly!</h1>
+              <div>I will buy your land without all of the hassle.</div>
             </div>
             <div className="col-lg-5 col-md-6 text-center">
-              <InterestForm className="interest-form bg-white shadow-sm rounded p-4 m-auto" />
+              <InterestForm className="interest-form bg-white shadow-sm rounded p-4 m-auto" onSubmit={handleFormSubmit} />
             </div>
           </div>
         </div>
@@ -92,6 +98,7 @@ const IndexPage: React.SFC<IndexPageProps> = props => {
             <div className="col-lg-10 col-md-9">
               <h2 id="about-me-excerpt">{props.data.about.frontmatter.title}</h2>
               <div dangerouslySetInnerHTML={{ __html: props.data.about.excerpt }} />
+              <Link to="/about">Learn more about me</Link>
             </div>
           </div>
         </div>

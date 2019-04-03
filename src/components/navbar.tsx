@@ -1,9 +1,10 @@
-import { Link } from "gatsby";
+import Button from "@material/react-button";
+import TopAppBar, { TopAppBarRow, TopAppBarSection, TopAppBarTitle } from "@material/react-top-app-bar";
 import React from "react";
 
 interface NavLinkMap {
   label: string;
-  href?: string;
+  href: string;
 }
 
 interface NavBarProps {
@@ -35,59 +36,36 @@ export class NavBar extends React.Component<NavBarProps, { isTop: boolean }> {
     if (this.props.navLinks && this.props.navLinks.length > 0) {
       const navLinks = this.props.navLinks.map((item, index) => {
         return (
-          <li className="nav-item" key={index}>
-            {item.href ? (
-              <Link className="p-2 nav-link" to={item.href}>
-                {item.label}
-              </Link>
-            ) : (
-              <a className="p-2 nav-link" href="#">{item.label}</a>
-            )}
-          </li>
+          <Button key={index} href={item.href} unelevated={true}>
+            {item.label}
+          </Button>
         );
       });
       navLinksSection = (
-        <nav className="my-2 my-md-0 mr-md-3" role="navigation">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarCollapse"
-            aria-controls="navbarCollapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarCollapse">
-            <ul className="navbar-nav mr-auto">{navLinks}</ul>
-          </div>
-        </nav>
+        <TopAppBarSection align="end" role="toolbar">
+          {navLinks}
+        </TopAppBarSection>
       );
     }
-    let logo;
-    if (this.props.siteLogo) {
-      logo = <img className="navbar-logo align-bottom" src={this.props.siteLogo} alt="site logo" />;
-    }
+
+    const homeLink = (
+      <Button href="/" unelevated={true}>
+        {this.props.siteLogo ? (
+          <img className="navbar-logo align-bottom" src={this.props.siteLogo} alt="site logo" />
+        ) : null}
+        <span style={{textTransform: "none"}}>{this.props.siteTitle}</span>
+      </Button>
+    );
     return (
       <header>
-        <div
-          className={`navbar navbar-expand-md fixed-top py-3 px-md-5 ${
-            this.state.isTop ? "" : "scrolled"
-          }`}
-        >
-          <div className="container">
-            <h5 className="my-0 mr-md-auto font-weight-normal">
-              <Link className="navbar-brand" to="/">
-                <div className="title-with-logo">
-                  {logo}
-                  <span className="site-title align-bottom">{this.props.siteTitle}</span>
-                </div>
-              </Link>
-            </h5>
+        <TopAppBar>
+          <TopAppBarRow>
+            <TopAppBarSection align="start">
+              <TopAppBarTitle>{homeLink}</TopAppBarTitle>
+            </TopAppBarSection>
             {navLinksSection}
-          </div>
-        </div>
+          </TopAppBarRow>
+        </TopAppBar>
       </header>
     );
   }
