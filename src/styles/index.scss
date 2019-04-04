@@ -1,81 +1,32 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-$enable-gradients: true;
-
-@import "~@material/react-top-app-bar/index.scss";
-@import "~@material/react-button/index.scss";
-@import "~@material/react-material-icon/index.scss";
-@import "~bootstrap/scss/bootstrap.scss";
-
 * {
   font-family: "Roboto", sans-serif;
   scroll-behavior: smooth;
 }
 
-// Make sure that scrolling to anchors is smooth
-#how-it-works::before {
-  content: "";
-  display: block;
-  height: 80px;
-  margin: -80px 0 0;
+main {
+  padding-top: 60px;
 }
 
-@include media-breakpoint-down(md) {
-  #how-it-works::before {
+// Make sure that scrolling to anchors is smooth
+#how-it-works {
+  text-align: center;
+  ::before {
     content: "";
     display: block;
-    height: 100px;
-    margin: -100px 0 0;
+    height: 80px;
+    margin: -80px 0 0;
   }
 }
 
-#for-sale-image {
-  z-index: -1;
-  height: 300px;
-}
-
-.navbar {
-  @extend .bg-transparent;
-  @extend .navbar-light;
-}
-
-.navbar.scrolled {
-  @extend .bg-white;
-  @extend .border-bottom;
-  @extend .shadow-sm;
-}
-
-.navbar-logo {
-  width: 36px;
-  height: 36px;
-  padding-right: 4px;
-}
-
-.title-with-logo {
-  @extend .align-bottom;
-  height: 36px;
-}
-
-span.site-title {
-  display: none;
-  font-size: 1.6rem;
-}
-
-@include media-breakpoint-up(sm) {
-  span.site-title {
-    display: inline-block;
-  }
-}
-
-#index-primary-content {
-  background-image: -webkit-linear-gradient(to right, rgba(0, 201, 255, 0.5), rgba(146, 254, 157, 0.5)),
-    url("../images/background-rainier.jpg"); /* Chrome 10-25, Safari 5.1-6 */
-  background-image: linear-gradient(to right, rgba(0, 201, 255, 0.5), rgba(146, 254, 157, 0.5)),
-    url("../images/background-rainier.jpg"); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+#background-image {
+  background-color: rgba(0, 110, 255, 0.13);
+  background-image: url("../images/sedona_for_sale.svg");
+  background-size: 800px;
   background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
+  background-position: bottom left;
 }
 
 #table-of-contents {

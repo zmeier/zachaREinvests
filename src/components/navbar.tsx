@@ -1,72 +1,80 @@
-import Button from "@material/react-button";
-import TopAppBar, { TopAppBarRow, TopAppBarSection, TopAppBarTitle } from "@material/react-top-app-bar";
+import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
+import { createStyles, Theme, withStyles, WithStyles } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import React from "react";
+
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    grow: {
+      flexGrow: 1,
+    },
+    [theme.breakpoints.down("xs")]: {
+      logoName: {
+        display: "none",
+      },
+    },
+  });
 
 interface NavLinkMap {
   label: string;
   href: string;
 }
 
-interface NavBarProps {
+interface NavBarProps extends WithStyles<typeof styles> {
   siteTitle: string;
   siteLogo?: string;
   navLinks?: NavLinkMap[];
+  primaryAction?: NavLinkMap;
 }
 
-export class NavBar extends React.Component<NavBarProps, { isTop: boolean }> {
-  static defaultProps: Partial<NavBarProps> = {
-    siteLogo: "",
-    navLinks: [],
-  };
-  state = {
-    isTop: true,
-  };
-
-  componentDidMount() {
-    document.addEventListener("scroll", () => {
-      const isTop = window.scrollY < 10;
-      if (isTop !== this.state.isTop) {
-        this.setState({ isTop });
-      }
+const NavBar: React.SFC<NavBarProps> = props => {
+  let navLinks: JSX.Element[] = [];
+  if (props.navLinks && props.navLinks.length > 0) {
+    navLinks = props.navLinks.map((item, index) => {
+      return (
+        <Button key={index} href={item.href} color="inherit">
+          {item.label}
+        </Button>
+      );
     });
   }
-
-  public render() {
-    let navLinksSection;
-    if (this.props.navLinks && this.props.navLinks.length > 0) {
-      const navLinks = this.props.navLinks.map((item, index) => {
-        return (
-          <Button key={index} href={item.href} unelevated={true}>
-            {item.label}
-          </Button>
-        );
-      });
-      navLinksSection = (
-        <TopAppBarSection align="end" role="toolbar">
-          {navLinks}
-        </TopAppBarSection>
-      );
-    }
-
-    const homeLink = (
-      <Button href="/" unelevated={true}>
-        {this.props.siteLogo ? (
-          <img className="navbar-logo align-bottom" src={this.props.siteLogo} alt="site logo" />
-        ) : null}
-        <span style={{textTransform: "none"}}>{this.props.siteTitle}</span>
+  if (props.primaryAction) {
+    navLinks.push(
+      <Button key="primary-action" href={props.primaryAction.href} variant="contained" color="secondary">
+        {props.primaryAction.label}
       </Button>
     );
-    return (
-      <header>
-        <TopAppBar>
-          <TopAppBarRow>
-            <TopAppBarSection align="start">
-              <TopAppBarTitle>{homeLink}</TopAppBarTitle>
-            </TopAppBarSection>
-            {navLinksSection}
-          </TopAppBarRow>
-        </TopAppBar>
-      </header>
-    );
   }
-}
+
+  return (
+    <header className={props.classes.root}>
+      <AppBar position="fixed" color="primary">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" className={props.classes.grow}>
+            <Button href="/" color="inherit" aria-label="home">
+              {props.siteLogo ? (
+                <img className="navbar-logo align-bottom" src={props.siteLogo} alt="site logo" width="40" />
+              ) : null}
+              <span style={{ textTransform: "none", fontSize: "1.2rem" }} className={props.classes.logoName}>
+                {props.siteTitle}
+              </span>
+            </Button>
+          </Typography>
+          {navLinks}
+        </Toolbar>
+      </AppBar>
+    </header>
+  );
+};
+
+NavBar.defaultProps = {
+  siteTitle: "",
+  navLinks: [],
+};
+
+export default withStyles(styles)(NavBar);

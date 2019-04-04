@@ -1,9 +1,10 @@
+import CssBaseline from "@material-ui/core/CssBaseline";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
 import zachaREI_logo from "../images/zachaREI_logo.svg";
 import "../styles/index.scss";
-import { NavBar } from "./navbar";
+import NavBar from "./navbar";
 
 export const Layout: React.SFC = props => {
   const { site } = useStaticQuery(
@@ -21,6 +22,7 @@ export const Layout: React.SFC = props => {
   const copyright = <div id="copyright">© 2019{currentYear > 2019 ? `-${currentYear}` : ""} zachaREI</div>;
   return (
     <>
+      <CssBaseline />
       <NavBar
         siteTitle={site.siteMetadata.title}
         siteLogo={zachaREI_logo}
@@ -29,6 +31,7 @@ export const Layout: React.SFC = props => {
           { label: "FAQ", href: "/faq" },
           { label: "About", href: "/about" },
         ]}
+        primaryAction={{label: "Sell your land", href: "/sell"}}
       />
       <main>{props.children}</main>
       <div className="container">

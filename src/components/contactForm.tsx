@@ -5,7 +5,7 @@ interface InterestFormProps {
   className?: string;
 }
 
-export const InterestForm: React.SFC<InterestFormProps> = props => {
+export const ContactForm: React.SFC<InterestFormProps> = props => {
   return (
     <form className={props.className} onSubmit={props.onSubmit}>
       <h3>Get started with a free offer!</h3>

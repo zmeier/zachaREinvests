@@ -10,7 +10,8 @@
     "no-console": [false],
     "no-var-requires": true,
     "quotemark": [true, "double", "jsx-double"],
-    "object-literal-sort-keys": [false]
+    "object-literal-sort-keys": [false],
+    "no-submodule-imports": false
   },
   "rulesDirectory": []
 }
