@@ -8,6 +8,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "bootstrap": "^4.3.1",
+    "fetch-ponyfill": "^6.0.2",
     "gatsby": "^2.3.4",
     "gatsby-background-image": "^0.2.8-alpha4",
     "gatsby-image": "^2.0.35",
@@ -30,8 +31,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-helmet": "^5.2.0",
-    "whatwg-fetch": "^3.0.0"
+    "react-helmet": "^5.2.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.3.29",

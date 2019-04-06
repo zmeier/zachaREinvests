@@ -1,4 +1,5 @@
-import "whatwg-fetch";
+import fetchPonyfill from 'fetch-ponyfill';
+const {fetch, Response} = fetchPonyfill();
 
 const CONTACT_US_URL = "/api/contact";
 

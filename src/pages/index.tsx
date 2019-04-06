@@ -36,7 +36,6 @@ interface HowItWorksEdge {
       link: string;
       linkLabel: string;
       icon: string;
-      iconAlt: string;
     };
   };
 }
@@ -175,7 +174,6 @@ export const query = graphql`
             link
             linkLabel
             icon
-            iconAlt
           }
         }
       }
