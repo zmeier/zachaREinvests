@@ -41,6 +41,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-material-ui`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

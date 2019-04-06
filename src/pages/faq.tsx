@@ -1,6 +1,3 @@
-import "jquery";
-import "popper.js";
-
 import { graphql } from "gatsby";
 import React from "react";
 

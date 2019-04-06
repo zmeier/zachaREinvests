@@ -1,6 +1,3 @@
-import "jquery";
-import "popper.js";
-
 import { graphql, Link } from "gatsby";
 import Img, { FixedObject } from "gatsby-image";
 import React, { FormEvent } from "react";
