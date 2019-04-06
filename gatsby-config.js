@@ -3,6 +3,7 @@ module.exports = {
     title: `zachaREI`,
     description: `Looking to buy land all across the United States.`,
     author: `@zmeier`,
+    siteUrl: `https://zachareinvests.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -38,6 +39,8 @@ module.exports = {
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
