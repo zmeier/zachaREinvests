@@ -35,7 +35,7 @@ const contactQuery = graphql`
 const ContactUs: React.SFC = () => {
   const { addressQuery, phoneQuery }: ContactData = useStaticQuery(contactQuery);
   let addressElement;
-  if (addressQuery.nodes && addressQuery.nodes.length > 0) {
+  if (addressQuery.nodes && addressQuery.nodes.length > 0 && addressQuery.nodes[0].address && addressQuery.nodes[0].address.street) {
     addressElement = (
       <div>
         {addressQuery.nodes[0].address.street}
