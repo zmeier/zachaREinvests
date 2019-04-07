@@ -13,6 +13,10 @@ const styles = (theme: Theme) =>
     grow: {
       flexGrow: 1,
     },
+    logoName: {
+      textTransform: "none", 
+      fontSize: "1.2rem" 
+    },
     [theme.breakpoints.down("xs")]: {
       logoName: {
         display: "none",
@@ -32,7 +36,7 @@ interface NavBarProps extends WithStyles<typeof styles> {
   primaryAction?: NavLinkMap;
 }
 
-const NavBar: React.SFC<NavBarProps> = props => {
+const NavBarComponent: React.SFC<NavBarProps> = props => {
   let navLinks: JSX.Element[] = [];
   if (props.navLinks && props.navLinks.length > 0) {
     navLinks = props.navLinks.map((item, index) => {
@@ -60,7 +64,7 @@ const NavBar: React.SFC<NavBarProps> = props => {
               {props.siteLogo ? (
                 <img className="navbar-logo align-bottom" src={props.siteLogo} alt="site logo" width="40" />
               ) : null}
-              <span style={{ textTransform: "none", fontSize: "1.2rem" }} className={props.classes.logoName}>
+              <span className={props.classes.logoName}>
                 {props.siteTitle}
               </span>
             </Button>
@@ -72,9 +76,10 @@ const NavBar: React.SFC<NavBarProps> = props => {
   );
 };
 
-NavBar.defaultProps = {
+NavBarComponent.defaultProps = {
   siteTitle: "",
   navLinks: [],
 };
 
-export default withStyles(styles)(NavBar);
+const NavBar = withStyles(styles)(NavBarComponent);
+export { NavBar };

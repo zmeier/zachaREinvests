@@ -1,11 +1,11 @@
 import { Avatar, Button, CardActions, CardHeader, Icon } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import { Theme, withStyles, WithStyles } from "@material-ui/core/styles";
+import { StyleRulesCallback, Theme, withStyles, WithStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 
-const styles = (theme: Theme) => ({
+const styles: StyleRulesCallback = (theme: Theme) => ({
   avatar: {
     backgroundColor: theme.palette.secondary.dark,
   },
@@ -24,7 +24,7 @@ interface HowItWorksCardProps extends WithStyles<typeof styles> {
   action?: { link: string; linkLabel: string };
 }
 
-const HowItWorksCard: React.SFC<HowItWorksCardProps> = props => {
+const HowItWorksCardComponent: React.SFC<HowItWorksCardProps> = props => {
   let iconAvatar;
   if (props.icon) {
     iconAvatar = (
@@ -53,4 +53,5 @@ const HowItWorksCard: React.SFC<HowItWorksCardProps> = props => {
   );
 };
 
-export default withStyles(styles)(HowItWorksCard);
+const HowItWorksCard = withStyles(styles)(HowItWorksCardComponent);
+export { HowItWorksCard };

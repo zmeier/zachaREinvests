@@ -2,9 +2,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 
-import zachaREI_logo from "../images/zachaREI_logo.svg";
-import "../styles/index.scss";
-import NavBar from "./navbar";
+import zachaREI_logo from "../../images/zachaREI_logo.svg";
+import "../../styles/index.scss";
+import { Footer } from "./footer";
+import { NavBar } from "./navbar";
 
 export const Layout: React.SFC = props => {
   const { site } = useStaticQuery(
@@ -18,8 +19,6 @@ export const Layout: React.SFC = props => {
       }
     `
   );
-  const currentYear = new Date().getFullYear();
-  const copyright = <div id="copyright">© 2019{currentYear > 2019 ? `-${currentYear}` : ""} zachaREI</div>;
   return (
     <>
       <CssBaseline />
@@ -34,9 +33,7 @@ export const Layout: React.SFC = props => {
         primaryAction={{label: "Sell your land", href: "/sell"}}
       />
       <main>{props.children}</main>
-      <div className="container">
-        <footer className="pt-4 my-md-5 pt-md-5 border-top">{copyright}</footer>
-      </div>
+      <Footer />
     </>
   );
 };

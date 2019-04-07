@@ -7,18 +7,16 @@
 }
 
 main {
-  padding-top: 60px;
+  // Padding to make sure the header does not cover up content
+  padding-top: 65px;
 }
 
 // Make sure that scrolling to anchors is smooth
-#how-it-works {
-  text-align: center;
-  ::before {
-    content: "";
-    display: block;
-    height: 80px;
-    margin: -80px 0 0;
-  }
+*[id]::before {
+  content: "";
+  display: block;
+  height: 85px;
+  margin: -85px 0 0;
 }
 
 #background-image {
@@ -29,7 +27,7 @@ main {
   background-position: bottom left;
 }
 
-#table-of-contents {
+.table-of-contents {
   ul {
     padding-left: 0;
   }
@@ -38,17 +36,7 @@ main {
   }
 }
 
-.self-portrait {
-  max-width: 300px;
-}
-
-.interest-form {
-  max-width: 400px;
-  button {
-    width: 100%;
-  }
-}
-
+// Utility classes
 .line-break-text {
   white-space: pre-wrap;
 }

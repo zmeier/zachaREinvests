@@ -1,10 +1,19 @@
+import { Grid, StyleRulesCallback, Theme, Typography, WithStyles, withStyles } from "@material-ui/core";
 import { graphql } from "gatsby";
 import React from "react";
 
-import { Layout } from "../components/layout";
-import { SEO } from "../components/seo";
+import { Layout } from "../components/common/layout";
+import { SEO } from "../components/common/seo";
 
-interface FAQPageProps {
+const styles: StyleRulesCallback = (theme: Theme) => ({
+  container: {
+    padding: theme.spacing.unit * 2,
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  }
+});
+
+interface FAQPageProps extends WithStyles<typeof styles> {
   data: {
     markdownRemark: {
       html: string;
@@ -19,22 +28,23 @@ interface FAQPageProps {
 const FAQPage: React.SFC<FAQPageProps> = props => {
   return (
     <Layout>
-      <SEO title="Frequently Asked Questions" />
-      <section className="jumbotron-fluid pt-5 anchor-points">
-        <div className="container pt-5 p-3">
-          <div className="row">
-            <div
-              id="table-of-contents"
-              className="col-lg-4"
+      <SEO title="FAQ" />
+      <Grid container={true} justify="center" className={props.classes.container}>
+        <Grid item={true} xs={11}>
+          <Typography align="center" variant="h3">{props.data.markdownRemark.frontmatter.title}</Typography>
+        </Grid>
+        <Grid item={true} lg={3} md={10} xs={11} className={props.classes.soloTOC}>
+          <div className="table-of-contents">
+            <Typography
+              paragraph={true}
               dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.tableOfContents }}
             />
-            <div className="col-lg-8">
-              <h1>{props.data.markdownRemark.frontmatter.title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.html }} />
-            </div>
           </div>
-        </div>
-      </section>
+        </Grid>
+        <Grid item={true} lg={7} md={10} xs={11}>
+          <div dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.html }} />
+        </Grid>
+      </Grid>
     </Layout>
   );
 };
@@ -51,4 +61,4 @@ export const query = graphql`
   }
 `;
 
-export default FAQPage;
+export default withStyles(styles)(FAQPage);

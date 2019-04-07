@@ -11,6 +11,7 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import PlaceIcon from "@material-ui/icons/Place";
 import PropTypes from "prop-types";
 import React, { FormEvent } from "react";
+import { postContactUsForm } from "../../api/contactUsApi";
 
 interface SellPropertyFormProps extends WithStyles<typeof styles> {}
 
@@ -56,8 +57,10 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
     };
   }
 
-  handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  handleSubmit(formEvent: FormEvent<HTMLFormElement>) {
+    formEvent.preventDefault();
+    const formData = new FormData(formEvent.currentTarget);
+    postContactUsForm(formData);
   }
 
   public render() {
@@ -76,7 +79,11 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
             onChange={this.handleChange("ownerName")}
             margin="normal"
             InputProps={{
-              startAdornment: <InputAdornment position="start"><PersonIcon /></InputAdornment>,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PersonIcon />
+                </InputAdornment>
+              ),
             }}
           />
           <TextField
@@ -89,7 +96,11 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
             onChange={this.handleChange("emailAddress")}
             margin="normal"
             InputProps={{
-              startAdornment: <InputAdornment position="start"><EmailIcon /></InputAdornment>,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <EmailIcon />
+                </InputAdornment>
+              ),
             }}
           />
           <TextField
@@ -101,7 +112,11 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
             onChange={this.handleChange("phoneNumber")}
             margin="normal"
             InputProps={{
-              startAdornment: <InputAdornment position="start"><PhoneIcon /></InputAdornment>,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PhoneIcon />
+                </InputAdornment>
+              ),
             }}
           />
           <TextField
@@ -113,7 +128,11 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
             onChange={this.handleChange("propertyAddress")}
             margin="normal"
             InputProps={{
-              startAdornment: <InputAdornment position="start"><PlaceIcon /></InputAdornment>,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PlaceIcon />
+                </InputAdornment>
+              ),
             }}
           />
           <Button color="primary" className={this.props.classes.button} type="submit">

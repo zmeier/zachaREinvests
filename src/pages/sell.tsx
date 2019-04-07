@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Layout } from "../components/layout";
-import SellPropertyForm from "../components/sellPropertyForm";
-import { SEO } from "../components/seo";
+import { Layout } from "../components/common/layout";
+import { SEO } from "../components/common/seo";
+import SellPropertyForm from "../components/sell/sellPropertyForm";
 
 const SellPage: React.SFC = props => {
   return (

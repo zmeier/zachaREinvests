@@ -29,8 +29,10 @@ I will review every request and target a response within 24 hours.
 
 No, my primary focus is on vacant land; however, if you have other real estate that you would like to sell please send me a message and I would love to talk.
 
-[Contact us](/contact)
+[Contact Us](/contact)
 
 ## What will you do with my information?
 
-All of the information that you submit will be kept secure and will be used to determine an offer for your property.
+All of the information that you submit will be kept secure and will be used to determine an offer for your property. 
+
+Please see the [Terms and Conditions](/terms) and [Privacy Policy](/privacy) for more details.
