@@ -6,8 +6,8 @@ import SellPropertyForm from "../sell/sellPropertyForm";
 const styles = (theme: Theme) => ({
   root: {
     ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 11,
-    paddingBottom: theme.spacing.unit * 8,
+    paddingTop: theme.spacing.unit * 14,
+    paddingBottom: theme.spacing.unit * 6,
   },
   [theme.breakpoints.down("xs")]: {
     root: {

@@ -7,7 +7,7 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   },
   header: {
     paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit * 3,
     maxWidth: 500,
     margin: "auto"
   },

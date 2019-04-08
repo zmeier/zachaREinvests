@@ -1,5 +1,5 @@
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { createStyles, Theme, withStyles, WithStyles } from "@material-ui/core/styles";
+import { StyleRulesCallback, Theme, withStyles, WithStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import EmailIcon from "@material-ui/icons/Email";
 import PersonIcon from "@material-ui/icons/Person";
@@ -7,13 +7,12 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import PlaceIcon from "@material-ui/icons/Place";
 import React from "react";
 
-const styles = (theme: Theme) =>
-  createStyles({
-    textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
-    },
-  });
+const styles: StyleRulesCallback = (theme: Theme) => ({
+  textField: {
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+  },
+});
 
 export interface PrimarySellingInputsData {
   ownerName?: string;

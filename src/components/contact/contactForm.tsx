@@ -1,4 +1,4 @@
-import { createStyles, LinearProgress, Theme, Typography, withStyles, WithStyles } from "@material-ui/core";
+import { LinearProgress, StyleRulesCallback, Theme, Typography, withStyles, WithStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
@@ -9,27 +9,26 @@ import React, { FormEvent } from "react";
 
 import { CONTACT_US_API_URL, postForm } from "../../api/contactUsApi";
 
-const styles = (theme: Theme) =>
-  createStyles({
-    container: {
-      padding: theme.spacing.unit,
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    submittedContainer: {
-      padding: theme.spacing.unit * 2,
-    },
-    button: {
-      margin: theme.spacing.unit,
-    },
-    textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
-    },
-    progress: {
-      width: "100%"
-    }
-  });
+const styles: StyleRulesCallback = (theme: Theme) => ({
+  container: {
+    padding: theme.spacing.unit,
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  submittedContainer: {
+    padding: theme.spacing.unit * 2,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  textField: {
+    paddingLeft: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+  },
+  progress: {
+    width: "100%",
+  },
+});
 
 interface ContactFormProps extends WithStyles<typeof styles> {}
 

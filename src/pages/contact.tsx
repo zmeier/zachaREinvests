@@ -20,18 +20,18 @@ const ContactPage: React.SFC<ContactPageProps> = props => {
   return (
     <Layout>
       <SEO title="Contact" />
-      <Grid container={true} justify="center" alignItems="flex-start" className={props.classes.container} spacing={40}>
-        <Grid item={true} xs={10}>
-          <Typography variant="h4" align="center">
+      <Grid container={true} justify="center" alignItems="flex-start" className={props.classes.container}>
+        <Grid item={true} xs={12} className={props.classes.container}>
+          <Typography variant="h3" align="center">
             We would love to hear from you!
           </Typography>
         </Grid>
-        <Grid item={true} lg={4} md={5} sm={6} xs={10}>
+        <Grid item={true} lg={4} md={5} sm={6} xs={12}  className={props.classes.container}>
           <Paper>
             <ContactForm />
           </Paper>
         </Grid>
-        <Grid item={true} sm={3} xs={10}>
+        <Grid item={true} sm={3} xs={12}  className={props.classes.container}>
           <ContactUs />
         </Grid>
       </Grid>

@@ -1,4 +1,4 @@
-import { Theme, withStyles, WithStyles } from "@material-ui/core";
+import { StyleRulesCallback, Theme, withStyles, WithStyles } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
@@ -8,14 +8,9 @@ import "../../styles/index.scss";
 import { Footer } from "./footer";
 import { NavBar } from "./navbar";
 
-const styles = (theme: Theme) => ({
+const styles: StyleRulesCallback = () => ({
   main: {
-    paddingTop: 65,
-  },
-  [theme.breakpoints.down("xs")]: {
-    main: {
-      paddingTop: 85,
-    },
+    paddingTop: 75,
   },
 });
 

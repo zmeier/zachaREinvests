@@ -1,12 +1,11 @@
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
-import { createStyles, Theme, withStyles, WithStyles } from "@material-ui/core/styles";
+import { StyleRulesCallback, Theme, withStyles, WithStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 
-const styles = (theme: Theme) =>
-  createStyles({
+const styles: StyleRulesCallback = (theme: Theme) => ({
     root: {
       flexGrow: 1,
     },
