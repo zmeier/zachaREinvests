@@ -18,7 +18,7 @@ interface CallToActionSectionProps extends WithStyles<typeof styles> {}
 const CallToActionSectionComponent: React.SFC<CallToActionSectionProps> = props => {
   return (
     <div className={props.classes.root}>
-      <Typography id="how-it-works" variant="h3" className={props.classes.header}>
+      <Typography variant="h3" className={props.classes.header}>
         Get started selling your property today
       </Typography>
       <Button variant="contained" color="primary" size="large" href="/sell">
