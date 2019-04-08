@@ -7,7 +7,6 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
-    "bootstrap": "^4.3.1",
     "fetch-ponyfill": "^6.0.2",
     "gatsby": "^2.3.4",
     "gatsby-background-image": "^0.2.8-alpha4",
@@ -29,7 +28,6 @@
     "gatsby-transformer-remark": "^2.3.8",
     "gatsby-transformer-sharp": "^2.1.17",
     "node-sass": "^4.11.0",
-    "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0"
@@ -46,7 +44,11 @@
     "typescript": "^3.3.4000"
   },
   "keywords": [
-    "zachareinvests"
+    "zachareinvests",
+    "zacharei",
+    "land investing",
+    "land flipping",
+    "investment"
   ],
   "license": "MIT",
   "scripts": {

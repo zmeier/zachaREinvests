@@ -1,38 +1,22 @@
-// tslint:disable: no-submodule-imports
+import { LinearProgress } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Paper from "@material-ui/core/Paper";
 import { createStyles, Theme, withStyles, WithStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import EmailIcon from "@material-ui/icons/Email";
-import PersonIcon from "@material-ui/icons/Person";
-import PhoneIcon from "@material-ui/icons/Phone";
-import PlaceIcon from "@material-ui/icons/Place";
-import PropTypes from "prop-types";
+import CheckIcon from "@material-ui/icons/Check";
 import React, { FormEvent } from "react";
-import { postContactUsForm } from "../../api/contactUsApi";
 
-interface SellPropertyFormProps extends WithStyles<typeof styles> {}
-
-interface SellPropertyFormData {
-  ownerName: string;
-  propertyAddress: string;
-  emailAddress: string;
-  phoneNumber: string;
-}
+import { postForm, SELL_API_URL } from "../../api/contactUsApi";
+import { PrimarySellingInputs, PrimarySellingInputsData } from "./primarySellingInputs";
 
 const styles = (theme: Theme) =>
   createStyles({
-    root: {
-      ...theme.mixins.gutters(),
-      maxWidth: 500,
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
-    },
     container: {
+      padding: theme.spacing.unit,
       display: "flex",
       flexWrap: "wrap",
+    },
+    submittedContainer: {
+      padding: theme.spacing.unit * 2,
     },
     button: {
       margin: theme.spacing.unit,
@@ -40,112 +24,105 @@ const styles = (theme: Theme) =>
     textField: {
       marginLeft: theme.spacing.unit,
       marginRight: theme.spacing.unit,
+    },
+    progress: {
       width: "100%",
     },
   });
 
+// tslint:disable-next-line: no-empty-interface
+export interface SellingInputs extends PrimarySellingInputsData {}
+
+interface SellPropertyFormProps extends WithStyles<typeof styles> {}
+
+interface SellPropertyFormData {
+  data: SellingInputs;
+  submitted: "none" | "in_progress" | "submitted";
+}
+
 class SellPropertyForm extends React.Component<SellPropertyFormProps, SellPropertyFormData> {
   constructor(props: SellPropertyFormProps) {
     super(props);
-    this.state = { ownerName: "", propertyAddress: "", emailAddress: "", phoneNumber: "" };
+    this.state = {
+      data: {},
+      submitted: "none",
+    };
+    this.handleDataChanged = this.handleDataChanged.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(name: keyof SellPropertyFormData) {
+  handleDataChanged(name: keyof SellingInputs) {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
-      this.setState(({ [name]: event.target.value } as any) as Pick<SellPropertyFormData, keyof SellPropertyFormData>);
+      const updatedData: SellingInputs = { ...this.state.data };
+      updatedData[name] = event.target.value;
+      this.setState({ data: updatedData });
     };
   }
 
   handleSubmit(formEvent: FormEvent<HTMLFormElement>) {
     formEvent.preventDefault();
-    const formData = new FormData(formEvent.currentTarget);
-    postContactUsForm(formData);
+    if (this.state.submitted === "in_progress") {
+      return;
+    }
+    const formData = this.getDataAsFormData();
+    this.setState({ submitted: "in_progress" });
+    postForm(formData, SELL_API_URL)
+      .then(() => this.setState({ submitted: "submitted" }))
+      .catch(error => {
+        console.log(error);
+        this.setState({ submitted: "none" });
+      });
   }
 
   public render() {
+    if (this.state.submitted === "submitted") {
+      return (
+        <div className={this.props.classes.submittedContainer}>
+          <Typography align="center">
+            <CheckIcon nativeColor="green" fontSize="large" />
+          </Typography>
+          <Typography variant="h5" align="center">
+            We have received your submission!
+          </Typography>
+
+          <Typography paragraph={true} align="center">
+            We look forward to working with you and will get back to you as soon as possible
+          </Typography>
+        </div>
+      );
+    }
+
+    const formDisabled = this.state.submitted !== "none";
     return (
-      <Paper className={this.props.classes.root} elevation={1}>
-        <Typography variant="h5" color="primary">
-          Get a free offer to buy your land!
-        </Typography>
-        <form className={this.props.classes.container}>
-          <TextField
-            id="owner-name"
-            label="Owner Name"
-            className={this.props.classes.textField}
-            value={this.state.ownerName}
-            required={true}
-            onChange={this.handleChange("ownerName")}
-            margin="normal"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PersonIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            id="email-address"
-            label="Email Address"
-            type="email"
-            className={this.props.classes.textField}
-            value={this.state.emailAddress}
-            required={true}
-            onChange={this.handleChange("emailAddress")}
-            margin="normal"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            id="phone-number"
-            label="Phone Number"
-            type="phone"
-            className={this.props.classes.textField}
-            value={this.state.phoneNumber}
-            onChange={this.handleChange("phoneNumber")}
-            margin="normal"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PhoneIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            id="property-address"
-            label="Property Address"
-            className={this.props.classes.textField}
-            value={this.state.propertyAddress}
-            required={true}
-            onChange={this.handleChange("propertyAddress")}
-            margin="normal"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PlaceIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button color="primary" className={this.props.classes.button} type="submit">
-            Get offer
-          </Button>
-        </form>
-      </Paper>
+      <form className={this.props.classes.container} onSubmit={this.handleSubmit}>
+        <PrimarySellingInputs
+          data={this.state.data}
+          disabled={formDisabled}
+          onDataChanged={this.handleDataChanged}
+        />
+        <Button color="primary" className={this.props.classes.button} type="submit" disabled={formDisabled}>
+          Get an offer
+        </Button>
+        {this.state.submitted === "in_progress" ? <LinearProgress className={this.props.classes.progress} /> : null}
+      </form>
     );
   }
-}
 
-(SellPropertyForm as React.ComponentClass<SellPropertyFormProps>).propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
+  getDataOrDefault(dataName: keyof SellingInputs, defaultValue: string): string {
+    if (this.state.data[dataName]) {
+      return this.state.data[dataName] as string;
+    }
+    return defaultValue;
+  }
+
+  getDataAsFormData(): FormData {
+    const formData = new FormData();
+    formData.append("name", this.getDataOrDefault("ownerName", ""));
+    formData.append("email", this.getDataOrDefault("emailAddress", ""));
+    formData.append("phone", this.getDataOrDefault("phoneNumber", ""));
+    formData.append("propertyAddress", this.getDataOrDefault("propertyAddress", ""));
+    return formData;
+  }
+}
 
 export default withStyles(styles)(SellPropertyForm);

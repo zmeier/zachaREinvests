@@ -1,9 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: `zachaREI`,
-    description: `Looking to buy land all across the United States.`,
+    description: `I buy vacant land in Arizona. I will also buy land from other States, but my primary focus is Arizona. I provide a quick and painless process for selling your property and getting you paid!`,
     author: `@zmeier`,
     siteUrl: `https://zachareinvests.com`,
+  },
+  proxy: {
+    prefix: "/api",
+    url: "https://zachareinvests.com",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

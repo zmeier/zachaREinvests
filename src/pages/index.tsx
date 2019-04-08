@@ -12,7 +12,7 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   container: {
     padding: theme.spacing.unit * 2,
     paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
+    paddingBottom: theme.spacing.unit * 2,
   },
   itemContainer: {
     paddingTop: theme.spacing.unit,
@@ -24,7 +24,7 @@ interface IndexPageProps extends WithStyles<typeof styles> {}
 
 const IndexPage: React.SFC<IndexPageProps> = props => {
   return (
-    <Layout>
+    <Layout removeMainPadding={true}>
       <SEO title="Home" />
       <PrimaryContentSection />
       <Grid container={true} justify="center" alignItems="center" className={props.classes.container}>

@@ -6,11 +6,6 @@
   scroll-behavior: smooth;
 }
 
-main {
-  // Padding to make sure the header does not cover up content
-  padding-top: 65px;
-}
-
 // Make sure that scrolling to anchors is smooth
 *[id]::before {
   content: "";
