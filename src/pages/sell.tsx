@@ -13,6 +13,9 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   },
   itemContainer: {
     padding: theme.spacing.unit * 2,
+  },
+  paper: {
+    maxWidth: 500
   }
 });
 
@@ -29,7 +32,7 @@ const SellPage: React.SFC<SellPageProps> = props => {
           </Typography>
         </Grid>
         <Grid item={true} lg={4} md={5} sm={6} xs={12} className={props.classes.itemContainer}>
-          <Paper>
+          <Paper className={props.classes.paper}>
             <SellPropertyForm />
           </Paper>
         </Grid>

@@ -31,6 +31,11 @@
   }
 }
 
+.material-icons {
+  /* Support for IE */
+  font-feature-settings: "liga";
+}
+
 // Utility classes
 .line-break-text {
   white-space: pre-wrap;

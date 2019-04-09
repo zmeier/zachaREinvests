@@ -11,8 +11,6 @@ import { PrimarySellingInputs, PrimarySellingInputsData } from "./primarySelling
 const styles: StyleRulesCallback = (theme: Theme) => ({
   container: {
     padding: theme.spacing.unit,
-    display: "flex",
-    flexWrap: "wrap",
   },
   submittedContainer: {
     padding: theme.spacing.unit * 2,
@@ -63,9 +61,8 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
     if (this.state.submitted === "in_progress") {
       return;
     }
-    const formData = this.getDataAsFormData();
     this.setState({ submitted: "in_progress" });
-    postForm(formData, SELL_API_URL)
+    postForm(this.state.data, SELL_API_URL)
       .then(() => this.setState({ submitted: "submitted" }))
       .catch(error => {
         console.log(error);
@@ -101,22 +98,6 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
         {this.state.submitted === "in_progress" ? <LinearProgress className={this.props.classes.progress} /> : null}
       </form>
     );
-  }
-
-  getDataOrDefault(dataName: keyof SellingInputs, defaultValue: string): string {
-    if (this.state.data[dataName]) {
-      return this.state.data[dataName] as string;
-    }
-    return defaultValue;
-  }
-
-  getDataAsFormData(): FormData {
-    const formData = new FormData();
-    formData.append("name", this.getDataOrDefault("ownerName", ""));
-    formData.append("email", this.getDataOrDefault("emailAddress", ""));
-    formData.append("phone", this.getDataOrDefault("phoneNumber", ""));
-    formData.append("propertyAddress", this.getDataOrDefault("propertyAddress", ""));
-    return formData;
   }
 }
 

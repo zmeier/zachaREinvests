@@ -4,13 +4,8 @@ const { fetch } = fetchPonyfill();
 export const SELL_API_URL = "/api/sell";
 export const CONTACT_US_API_URL = "/api/contact";
 
-export const postForm = (submission: FormData, url: string) => {
-  const formInputs: { [key: string]: any } = {};
-  submission.forEach((value, key) => {
-    formInputs[key] = value;
-  });
-  const submissionAsJson = JSON.stringify(formInputs);
-
+export const postForm = (submission: { [key: string]: any }, url: string) => {
+  const submissionAsJson = JSON.stringify(submission);
   return fetch(url, {
     method: "POST",
     headers: {

@@ -12,6 +12,9 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  paper: {
+    maxWidth: 500
+  }
 });
 
 interface ContactPageProps extends WithStyles<typeof styles> {}
@@ -27,7 +30,7 @@ const ContactPage: React.SFC<ContactPageProps> = props => {
           </Typography>
         </Grid>
         <Grid item={true} lg={4} md={5} sm={6} xs={12}  className={props.classes.container}>
-          <Paper>
+          <Paper className={props.classes.paper}>
             <ContactForm />
           </Paper>
         </Grid>

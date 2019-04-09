@@ -12,8 +12,6 @@ import { CONTACT_US_API_URL, postForm } from "../../api/contactUsApi";
 const styles: StyleRulesCallback = (theme: Theme) => ({
   container: {
     padding: theme.spacing.unit,
-    display: "flex",
-    flexWrap: "wrap",
   },
   submittedContainer: {
     padding: theme.spacing.unit * 2,
@@ -32,23 +30,29 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
 
 interface ContactFormProps extends WithStyles<typeof styles> {}
 
-interface ContactFormData {
-  name: string;
-  emailAddress: string;
-  message: string;
+interface ContactFormInputs {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+interface ContactFormState {
+  data: ContactFormInputs;
   submitted: "none" | "in_progress" | "submitted";
 }
 
-class ContactFormComponent extends React.Component<ContactFormProps, ContactFormData> {
+class ContactFormComponent extends React.Component<ContactFormProps, ContactFormState> {
   constructor(props: ContactFormProps) {
     super(props);
-    this.state = { name: "", emailAddress: "", message: "", submitted: "none" };
+    this.state = { data: {}, submitted: "none" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(name: keyof ContactFormData) {
+  handleChange(name: keyof ContactFormInputs) {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
-      this.setState(({ [name]: event.target.value } as any) as Pick<ContactFormData, keyof ContactFormData>);
+      const updatedData: ContactFormInputs = { ...this.state.data };
+      updatedData[name] = event.target.value;
+      this.setState({ data: updatedData });
     };
   }
 
@@ -57,9 +61,8 @@ class ContactFormComponent extends React.Component<ContactFormProps, ContactForm
     if (this.state.submitted === "in_progress") {
       return;
     }
-    const formData = new FormData(formEvent.currentTarget);
     this.setState({ submitted: "in_progress" });
-    postForm(formData, CONTACT_US_API_URL)
+    postForm(this.state.data, CONTACT_US_API_URL)
       .then(() => this.setState({ submitted: "submitted" }))
       .catch(error => {
         console.log(error);
@@ -95,7 +98,7 @@ class ContactFormComponent extends React.Component<ContactFormProps, ContactForm
           disabled={formDisabled}
           fullWidth={true}
           className={this.props.classes.textField}
-          value={this.state.name}
+          value={this.state.data.name}
           required={true}
           onChange={this.handleChange("name")}
           margin="normal"
@@ -115,9 +118,9 @@ class ContactFormComponent extends React.Component<ContactFormProps, ContactForm
           disabled={formDisabled}
           fullWidth={true}
           className={this.props.classes.textField}
-          value={this.state.emailAddress}
+          value={this.state.data.email}
           required={true}
-          onChange={this.handleChange("emailAddress")}
+          onChange={this.handleChange("email")}
           margin="normal"
           InputProps={{
             startAdornment: (
@@ -136,7 +139,7 @@ class ContactFormComponent extends React.Component<ContactFormProps, ContactForm
           disabled={formDisabled}
           fullWidth={true}
           className={this.props.classes.textField}
-          value={this.state.message}
+          value={this.state.data.message}
           required={true}
           onChange={this.handleChange("message")}
           margin="normal"

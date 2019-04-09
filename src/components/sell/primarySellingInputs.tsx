@@ -15,10 +15,10 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
 });
 
 export interface PrimarySellingInputsData {
-  ownerName?: string;
+  name?: string;
+  email?: string;
+  phone?: string;
   propertyAddress?: string;
-  emailAddress?: string;
-  phoneNumber?: string;
 }
 
 interface PrimarySellingInputsProps extends WithStyles<typeof styles> {
@@ -37,9 +37,9 @@ const PrimarySellingInputsComponent: React.SFC<PrimarySellingInputsProps> = prop
         disabled={props.disabled}
         fullWidth={true}
         className={props.classes.textField}
-        value={props.data.ownerName}
+        value={props.data.name}
         required={true}
-        onChange={props.onDataChanged("ownerName")}
+        onChange={props.onDataChanged("name")}
         margin="normal"
         InputProps={{
           startAdornment: (
@@ -57,9 +57,9 @@ const PrimarySellingInputsComponent: React.SFC<PrimarySellingInputsProps> = prop
         disabled={props.disabled}
         fullWidth={true}
         className={props.classes.textField}
-        value={props.data.emailAddress}
+        value={props.data.email}
         required={true}
-        onChange={props.onDataChanged("emailAddress")}
+        onChange={props.onDataChanged("email")}
         margin="normal"
         InputProps={{
           startAdornment: (
@@ -77,8 +77,8 @@ const PrimarySellingInputsComponent: React.SFC<PrimarySellingInputsProps> = prop
         disabled={props.disabled}
         fullWidth={true}
         className={props.classes.textField}
-        value={props.data.phoneNumber}
-        onChange={props.onDataChanged("phoneNumber")}
+        value={props.data.phone}
+        onChange={props.onDataChanged("phone")}
         margin="normal"
         InputProps={{
           startAdornment: (
