@@ -6,6 +6,11 @@
   scroll-behavior: smooth;
 }
 
+main {
+  // IE11 issues needs this to be set otherwise everything gets shifted up
+  display: block;
+}
+
 // Make sure that scrolling to anchors is smooth
 *[id]::before {
   content: "";

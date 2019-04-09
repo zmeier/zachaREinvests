@@ -25,8 +25,8 @@ const SellPage: React.SFC<SellPageProps> = props => {
   return (
     <Layout>
       <SEO title="Sell Land" />
-      <Grid container={true} justify="center" alignItems="center" className={props.classes.container} direction="column">
-        <Grid item={true} md={6} sm={8} xs={12} className={props.classes.itemContainer}>
+      <Grid container={true} justify="center" alignItems="center" className={props.classes.container}>
+        <Grid item={true} sm={10} xs={12} className={props.classes.itemContainer}>
           <Typography variant="h3" align="center">
             I want to buy your property!
           </Typography>
