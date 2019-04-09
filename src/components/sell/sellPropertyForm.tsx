@@ -78,11 +78,11 @@ class SellPropertyForm extends React.Component<SellPropertyFormProps, SellProper
             <CheckIcon nativeColor="green" fontSize="large" />
           </Typography>
           <Typography variant="h5" align="center">
-            We have received your submission!
+            I have received your submission!
           </Typography>
 
           <Typography paragraph={true} align="center">
-            We look forward to working with you and will get back to you as soon as possible
+            I look forward to working with you and will get back to you as soon as possible
           </Typography>
         </div>
       );

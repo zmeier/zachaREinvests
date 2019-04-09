@@ -33,7 +33,7 @@ const PrimaryContentSectionComponent: React.SFC<PrimaryContentSectionProps> = pr
             Sell your land quickly!
           </Typography>
           <Typography color="primary" variant="h6">
-            We will buy your land without all of the hassle
+            I will buy your land without all of the hassle
           </Typography>
         </div>
       </Grid>

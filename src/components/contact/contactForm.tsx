@@ -78,10 +78,10 @@ class ContactFormComponent extends React.Component<ContactFormProps, ContactForm
             <CheckIcon nativeColor="green" fontSize="large" />
           </Typography>
           <Typography variant="h5" align="center">
-            Thank you for sending us a message!
+            Thank you for sending me a message!
           </Typography>
           <Typography paragraph={true} align="center">
-            We will get back to you as soon as we can. Feel free to give us a call if you need a quicker response. We
+            I will get back to you as soon as I can. Feel free to give us a call if you need a quicker response. I
             look forward to speaking with you.
           </Typography>
         </div>

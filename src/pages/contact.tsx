@@ -26,7 +26,7 @@ const ContactPage: React.SFC<ContactPageProps> = props => {
       <Grid container={true} justify="center" alignItems="flex-start" className={props.classes.container}>
         <Grid item={true} xs={12} className={props.classes.container}>
           <Typography variant="h3" align="center">
-            We would love to hear from you!
+            I would love to hear from you!
           </Typography>
         </Grid>
         <Grid item={true} lg={4} md={5} sm={6} xs={12}  className={props.classes.container}>

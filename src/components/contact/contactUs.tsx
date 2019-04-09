@@ -55,7 +55,7 @@ const ContactUs: React.SFC = () => {
 
   return (
     <div>
-      <Typography variant="h5">Contact Us</Typography>
+      <Typography variant="h5">Contact Me</Typography>
       {addressElement}
       {phoneElement}
     </div>
