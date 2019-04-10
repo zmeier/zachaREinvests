@@ -34,12 +34,7 @@ const FAQPage: React.SFC<FAQPageProps> = props => {
           <Typography align="center" variant="h3">{props.data.markdownRemark.frontmatter.title}</Typography>
         </Grid>
         <Grid item={true} lg={3} md={10} xs={11} className={props.classes.soloTOC}>
-          <div className="table-of-contents">
-            <Typography
-              paragraph={true}
-              dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.tableOfContents }}
-            />
-          </div>
+          <div className="table-of-contents" dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.tableOfContents }}    />
         </Grid>
         <Grid item={true} lg={7} md={10} xs={11}>
           <div dangerouslySetInnerHTML={{ __html: props.data.markdownRemark.html }} />

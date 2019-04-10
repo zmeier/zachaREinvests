@@ -13,6 +13,7 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
     paddingBottom: theme.spacing.unit * 2,
   },
   paper: {
+    margin: "auto",
     maxWidth: 500
   }
 });
