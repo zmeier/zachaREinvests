@@ -3,7 +3,7 @@ import React from "react";
 
 import { Layout } from "../components/common/layout";
 import { SEO } from "../components/common/seo";
-import SellPropertyForm from "../components/sell/sellPropertyForm";
+import { SellPropertyForm } from "../components/sell/sellPropertyForm";
 
 const styles: StyleRulesCallback = (theme: Theme) => ({
   container: {
@@ -14,10 +14,6 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   itemContainer: {
     padding: theme.spacing.unit * 2,
   },
-  paper: {
-    margin: "auto",
-    maxWidth: 500
-  }
 });
 
 interface SellPageProps extends WithStyles<typeof styles> {}
@@ -32,10 +28,8 @@ const SellPage: React.SFC<SellPageProps> = props => {
             I want to buy your property!
           </Typography>
         </Grid>
-        <Grid item={true} lg={4} md={5} sm={6} xs={12} className={props.classes.itemContainer}>
-          <Paper className={props.classes.paper}>
-            <SellPropertyForm />
-          </Paper>
+        <Grid item={true} md={8} sm={10} xs={12} className={props.classes.itemContainer}>
+          <SellPropertyForm />
         </Grid>
       </Grid>
     </Layout>

@@ -1,7 +1,7 @@
 import { Grid, Paper, Theme, Typography, withStyles, WithStyles } from "@material-ui/core";
 import React from "react";
 
-import SellPropertyForm from "../sell/sellPropertyForm";
+import { SellPropertyForm } from "../sell/sellPropertyForm";
 
 const styles = (theme: Theme) => ({
   root: {
@@ -42,7 +42,7 @@ const PrimaryContentSectionComponent: React.SFC<PrimaryContentSectionProps> = pr
           <Typography variant="h5" color="primary" align="center">
             Get a free offer to buy your land!
           </Typography>
-          <SellPropertyForm />
+          <SellPropertyForm useSimpleForm={true} />
         </Paper>
       </Grid>
     </Grid>

@@ -48,7 +48,7 @@ const ContactUs: React.SFC = () => {
   if (phoneQuery.nodes && phoneQuery.nodes.length > 0) {
     phoneElement = (
       <div>
-        Call: <a href={`tel:${phoneQuery.nodes[0].phoneNumber.raw}`}>{phoneQuery.nodes[0].phoneNumber.pretty}</a>
+        Call or text: <a href={`tel:${phoneQuery.nodes[0].phoneNumber.raw}`}>{phoneQuery.nodes[0].phoneNumber.pretty}</a>
       </div>
     );
   }
