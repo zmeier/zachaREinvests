@@ -12,6 +12,7 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
 
 export interface OptionalSellingInputsData {
   propertySize?: string;
+  roadAccess?: "yes" | "no";
   waterConnection?: "yes" | "no";
   electricalConnection?: "yes" | "no";
   backTaxes?: "yes" | "no";
@@ -27,6 +28,19 @@ const OptionalSellingInputsComponent: React.SFC<OptionalSellingInputsProps> = pr
   return (
     <div>
       <FormControl className={props.classes.formField}>
+        <FormLabel>Does the property have direct road access?</FormLabel>
+        <RadioGroup
+          aria-label="Road access"
+          name="roadAccess"
+          value={props.data.waterConnection}
+          onChange={props.onDataChanged("roadAccess")}
+          >
+          <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+          <FormControlLabel value="no" control={<Radio />} label="No" />
+          />
+        </RadioGroup>
+      </FormControl>
+      <FormControl className={props.classes.formField}>
         <FormLabel>Property Size</FormLabel>
         <RadioGroup
           aria-label="Property Size"
@@ -34,10 +48,11 @@ const OptionalSellingInputsComponent: React.SFC<OptionalSellingInputsProps> = pr
           value={props.data.propertySize}
           onChange={props.onDataChanged("propertySize")}
           >
-          <FormControlLabel value="<1" control={<Radio />} label="<1 acre" />
-          <FormControlLabel value="1-5" control={<Radio />} label="1 to 5 acres" />
-          <FormControlLabel value="5-15" control={<Radio />} label="5 to 15 acres" />
-          <FormControlLabel value=">15" control={<Radio />} label=">15 acres" />
+          <FormControlLabel value="<1 acre" control={<Radio />} label="<1 acre" />
+          <FormControlLabel value="1-5 acres" control={<Radio />} label="1 to 5 acres" />
+          <FormControlLabel value="5-15 acres" control={<Radio />} label="5 to 15 acres" />
+          <FormControlLabel value="15-30 acres" control={<Radio />} label="15 to 30 acres" />
+          <FormControlLabel value=">30 acres" control={<Radio />} label=">30 acres" />
           />
         </RadioGroup>
       </FormControl>
