@@ -6,6 +6,7 @@ import React, { FormEvent } from "react";
 import { postForm, SELL_API_URL } from "../../api/contactUsApi";
 import { OptionalSellingInputsData } from "./optionalSellingInputs";
 import { PrimarySellingInputs, PrimarySellingInputsData } from "./primarySellingInputs";
+import { SecureFormMessage } from "./secureFormMessage";
 import { SellPropertyStepper } from "./sellPropertyStepper";
 import { SubmissionReceived } from "./submissionReceived";
 
@@ -106,6 +107,7 @@ class SellPropertyFormComponent extends React.Component<SellPropertyFormProps, S
 
     return (
       <form className={this.props.classes.container} onSubmit={this.handleSubmit}>
+        <SecureFormMessage />
         <PrimarySellingInputs data={this.state.data} disabled={formDisabled} onDataChanged={this.handleDataChanged} />
         <Button color="primary" className={this.props.classes.button} type="submit" disabled={formDisabled}>
           Get an offer

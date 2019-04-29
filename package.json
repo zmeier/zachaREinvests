@@ -8,7 +8,7 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "fetch-ponyfill": "^6.0.2",
-    "gatsby": "^2.3.4",
+    "gatsby": "^2.3.32",
     "gatsby-background-image": "^0.2.8-alpha4",
     "gatsby-image": "^2.0.35",
     "gatsby-plugin-canonical-urls": "^2.0.12",
@@ -27,7 +27,7 @@
     "gatsby-transformer-json": "^2.1.11",
     "gatsby-transformer-remark": "^2.3.8",
     "gatsby-transformer-sharp": "^2.1.17",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0"

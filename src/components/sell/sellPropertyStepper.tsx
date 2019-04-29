@@ -5,6 +5,7 @@ import React, { FormEvent } from "react";
 
 import { OptionalSellingInputs } from "./optionalSellingInputs";
 import { PrimarySellingInputs } from "./primarySellingInputs";
+import { SecureFormMessage } from "./secureFormMessage";
 import { SellingInputs, SubmissionStatus } from "./sellPropertyForm";
 import { SubmissionReceived } from "./submissionReceived";
 
@@ -101,6 +102,7 @@ class SellPropertyStepperComponent extends React.Component<SellPropertyStepperPr
           onSubmit={this.props.onSubmit}
         >
           <Paper className={this.props.classes.stepContent}>
+            <SecureFormMessage />
             <Stepper className={this.props.classes.container} activeStep={activeStep} orientation="vertical">
               <Step>
                 <StepLabel>Property Info</StepLabel>
@@ -140,6 +142,7 @@ class SellPropertyStepperComponent extends React.Component<SellPropertyStepperPr
           </Step>
         </Stepper>
         <Paper className={this.props.classes.stepContent}>
+          <SecureFormMessage />
           {activeStep === 0 ? this.getPrimaryInputsContent() : null}
           {activeStep === 1 ? this.getOptionalInputsContent() : null}
           {activeStep === 2 ? <SubmissionReceived /> : null}
